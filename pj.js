@@ -7,6 +7,8 @@ let currentBoard;
 let nextBoard;
 let slider;
 let isGameContinue = true
+let defaultNeighborsOfReproduction = 3
+let defaultNeighborsOfLifeless = 2
 
 function setup() {
     slider = createSlider(2, 10, 2);
@@ -82,13 +84,13 @@ function generate() {
                 }
 
                 // Rules of Life
-                if (currentBoard[x][y] == 1 && neighbors < 2) {
+                if (currentBoard[x][y] == 1 && neighbors < defaultNeighborsOfLifeless) {
                     // Die of Loneliness
                     nextBoard[x][y] = 0;
                 } else if (currentBoard[x][y] == 1 && neighbors > 3) {
                     // Die of Overpopulation
                     nextBoard[x][y] = 0;
-                } else if (currentBoard[x][y] == 0 && neighbors == 3) {
+                } else if (currentBoard[x][y] == 0 && neighbors == defaultNeighborsOfReproduction) {
                     // New life due to Reproduction
                     nextBoard[x][y] = 1;
                 } else {
@@ -143,15 +145,67 @@ function mouseReleased() {
 document.querySelector('.reset-game')
     .addEventListener('click', function () {
         init();
+        defaultNeighborsOfReproduction = 3
+        document.querySelector('.reproductionNeighbors')
+            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+        defaultNeighborsOfLifeless = 2
+        document.querySelector('.showLonelinessSentence')
+        .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
     });
 
 document.querySelector('.stop')
     .addEventListener('click', function () {
         if (isGameContinue) {
             isGameContinue = false
-        }});
+        }
+    });
 
 document.querySelector('.play')
     .addEventListener('click', function () {
-            isGameContinue = true
-        });
+        isGameContinue = true
+    });
+
+
+// change rules for reproductionNeighbors
+document.querySelector('.reproductionNeighbors')
+    .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+
+document.querySelector('.addReproductionNeighbors')
+    .addEventListener('click', function () {
+        defaultNeighborsOfReproduction = defaultNeighborsOfReproduction + 1
+        document.querySelector('.reproductionNeighbors')
+            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+    });
+
+document.querySelector('.removeReproductionNeighbors')
+    .addEventListener('click', function () {
+        defaultNeighborsOfReproduction = defaultNeighborsOfReproduction - 1
+        if (defaultNeighborsOfReproduction < 0) {
+            defaultNeighborsOfReproduction = 0
+        }
+        document.querySelector('.reproductionNeighbors')
+            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+    });
+/////
+
+// change rules for lifeless
+document.querySelector('.showLonelinessSentence')
+    .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+
+document.querySelector('.addLonelinessNeighbors')
+    .addEventListener('click', function () {
+        defaultNeighborsOfLifeless = defaultNeighborsOfLifeless + 1
+        document.querySelector('.showLonelinessSentence')
+            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+    });
+
+document.querySelector('.removeLonelinessNeighbors')
+    .addEventListener('click', function () {
+        defaultNeighborsOfLifeless = defaultNeighborsOfLifeless - 1
+        if (defaultNeighborsOfLifeless < 0) {
+            defaultNeighborsOfLifeless = 0
+        }
+        document.querySelector('.showLonelinessSentence')
+            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+    });
+/////
