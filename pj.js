@@ -6,10 +6,10 @@ let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
 let slider;
+let isGameContinue = true
 
 function setup() {
     slider = createSlider(2, 10, 2);
-
 
     /* Set the canvas to be under the element #canvas*/
     const canvas = createCanvas(windowWidth, windowHeight - 100);
@@ -47,6 +47,8 @@ function draw() {
     frameRate(fr)
 
     background(255);
+
+
     generate();
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
@@ -62,41 +64,44 @@ function draw() {
 }
 
 function generate() {
-    //Loop over every single box on the board
-    for (let x = 0; x < columns; x++) {
-        for (let y = 0; y < rows; y++) {
-            // Count all living members in the Moore neighborhood(8 boxes surrounding)
-            let neighbors = 0;
-            for (let i of [-1, 0, 1]) {
-                for (let j of [-1, 0, 1]) {
-                    if (i == 0 && j == 0) {
-                        // the cell itself is not its own neighbor
-                        continue;
+    if (isGameContinue) {
+        //Loop over every single box on the board
+        for (let x = 0; x < columns; x++) {
+            for (let y = 0; y < rows; y++) {
+                // Count all living members in the Moore neighborhood(8 boxes surrounding)
+                let neighbors = 0;
+                for (let i of [-1, 0, 1]) {
+                    for (let j of [-1, 0, 1]) {
+                        if (i == 0 && j == 0) {
+                            // the cell itself is not its own neighbor
+                            continue;
+                        }
+                        // The modulo operator is crucial for wrapping on the edge
+                        neighbors += currentBoard[(x + i + columns) % columns][(y + j + rows) % rows];
                     }
-                    // The modulo operator is crucial for wrapping on the edge
-                    neighbors += currentBoard[(x + i + columns) % columns][(y + j + rows) % rows];
+                }
+
+                // Rules of Life
+                if (currentBoard[x][y] == 1 && neighbors < 2) {
+                    // Die of Loneliness
+                    nextBoard[x][y] = 0;
+                } else if (currentBoard[x][y] == 1 && neighbors > 3) {
+                    // Die of Overpopulation
+                    nextBoard[x][y] = 0;
+                } else if (currentBoard[x][y] == 0 && neighbors == 3) {
+                    // New life due to Reproduction
+                    nextBoard[x][y] = 1;
+                } else {
+                    // Stasis
+                    nextBoard[x][y] = currentBoard[x][y];
                 }
             }
-
-            // Rules of Life
-            if (currentBoard[x][y] == 1 && neighbors < 2) {
-                // Die of Loneliness
-                nextBoard[x][y] = 0;
-            } else if (currentBoard[x][y] == 1 && neighbors > 3) {
-                // Die of Overpopulation
-                nextBoard[x][y] = 0;
-            } else if (currentBoard[x][y] == 0 && neighbors == 3) {
-                // New life due to Reproduction
-                nextBoard[x][y] = 1;
-            } else {
-                // Stasis
-                nextBoard[x][y] = currentBoard[x][y];
-            }
         }
+
+        // Swap the nextBoard to be the current Board
+        [currentBoard, nextBoard] = [nextBoard, currentBoard];
     }
 
-    // Swap the nextBoard to be the current Board
-    [currentBoard, nextBoard] = [nextBoard, currentBoard];
 }
 
 /**
@@ -121,7 +126,10 @@ function mouseDragged() {
  * When mouse is pressed
  */
 function mousePressed() {
-    noLoop();
+    if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
+        return;
+    }
+    noLoop()
     mouseDragged();
 }
 
@@ -132,7 +140,18 @@ function mouseReleased() {
     loop();
 }
 
-document.querySelector('#reset-game')
+document.querySelector('.reset-game')
     .addEventListener('click', function () {
         init();
     });
+
+document.querySelector('.stop')
+    .addEventListener('click', function () {
+        if (isGameContinue) {
+            isGameContinue = false
+        }});
+
+document.querySelector('.play')
+    .addEventListener('click', function () {
+            isGameContinue = true
+        });
