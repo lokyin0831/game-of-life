@@ -16,36 +16,138 @@
 </head>
 
 <body>
-    <button class="reset-game">Reset</button>
-    <button class="stop">Stop</button>
-    <button class="play">Play</button>
-    <button class="color">Color</button>
-    <button class="random-initial-states">Random Mode</button>
-    <button class="gosper-glider-gun">Gosper glider gun</button>
-    <button class="lightweight-spaceship">Lightweight spaceship</button>
-    <button class="glider">Glider</button>
-    <button class="random-pattern-generator">Random Pattern</button>
-    <button class="draw-with-keyboard">Keyboard Mode (On/Off)</button>
-    <button class="night-mode">Night Mode</button>
-    <div>Zoom</div>
-    <button class="zoomBig">+</button><button class="zoomSmall">-</button>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light demo-wrap">
+        <img class="demo-bg" src="./assets/img/gameOfLife.png" alt="GameOfLifeBackground">
+        <div class="container-fluid demo-content">
+            <a class="navbar-brand " href="./index.html">Louie's Game of Life</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <div class="playAndStop">
+                        <input type="radio" class="btn-check play" name="options-outlined" id="success-outlined"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-success play" for="success-outlined">Play</label>
+                        <input type="radio" class="btn-check stop" name="options-outlined" id="danger-outlined"
+                            autocomplete="off">
+                        <label class="btn btn-outline-danger stop" for="danger-outlined">Stop</label>
+                    </div>
+                    <li class="nav-item">
+                        <div>
+                            <button type="button" class="btn btn-secondary  reset-game">Reset</button>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown paddingForDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Modes
+                        </a>
+                        <ul class="dropdown-menu">
+                            <div class="dropdown-item form-check form-switch">
+                                <input class="form-check-input night-mode" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Night Mode</label>
+                            </div>
+                            <div class="dropdown-item form-check form-switch">
+                                <input class="form-check-input color" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Color Mode</label>
+                            </div>
+                            <div class="dropdown-item form-check form-switch">
+                                <input class="form-check-input draw-with-keyboard" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Keyboard Mode</label>
+                            </div>
 
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown paddingForDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Patterns
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item random-initial-states">Random Mode</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item glider" href="#">Glider</a></li>
+                            <li><a class="dropdown-item gosper-glider-gun" href="#">Gosper glider gun</a></li>
+                            <li><a class="dropdown-item lightweight-spaceship" href="#">Lightweight spaceship</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item random-pattern-generator" href="#">Random Pattern (r)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown paddingForDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Customize
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="container-height container-display-flex">
+                                    <a class="dropdown-item-special-special" href="#">Zoom:</a>
+                                    <button type="button" class="btn btn-outline-dark zoomBig"><i
+                                            class="bi bi-zoom-in"></i></button>
+                                    <div class="button-padding">
+                                        <button type="button" class="btn btn-outline-dark zoomSmall"><i
+                                                class="bi bi-zoom-out"></i></button>
+                                    </div>
+                                    <div class="slidecontainer dropdown-item-special-special">
+                                        <p class="space-after-fps">FPS:  </p>
+                                        <p  class="space-after-fps-value" id="demo"></p>
+                                        <div class="padding-bottom-fps">
+                                            <input type="range" min="1" max="50" value="3" class="slider" id="myRange">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item-special reproductionNeighbors" href="#">If a box has no life and
+                                    it has 3 neighbors,
+                                    the box in next generation fills with life because of reproduction.</a></li>
+                            <div class="button-padding">
+                                <button type="button" class="btn btn-outline-dark addReproductionNeighbors"><i
+                                        class="bi bi-plus"></i></button>
+                                <button type="button" class="btn btn-outline-dark removeReproductionNeighbors"><i
+                                        class="bi bi-dash"></i></button>
+                            </div>
 
-    <div>Change the rules:</div>
-    <div class="reproductionNeighbors"></div>
-    <button class="addReproductionNeighbors">+</button><button class="removeReproductionNeighbors">-</button>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item-special showLonelinessSentence" href="#">If a box has life and
+                                    it has less than 2
+                                    neighbors. It dies of loneliness. The box becomes lifeless next generation.</a></li>
+                            <div class="button-padding">
+                                <button type="button" class="btn btn-outline-dark addLonelinessNeighbors"><i
+                                        class="bi bi-plus"></i></button>
+                                <button type="button" class="btn btn-outline-dark removeLonelinessNeighbors"><i
+                                        class="bi bi-dash"></i></button>
+                            </div>
 
-    <div class="showLonelinessSentence"></div>
-    <button class="addLonelinessNeighbors">+</button><button class="removeLonelinessNeighbors">-</button>
-
-
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End-->
     <div id='canvas'></div>
-    <div class="fps">fps:</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
-    <script type='text/javjs' src='https://cript' src="patterns.js" ></script>
+    <script type='text/javjs' src='https://cript' src="patterns.js"></script>
     <script src="pj.js"></script>
 </body>
 

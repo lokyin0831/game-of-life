@@ -1,3 +1,35 @@
 .portfolio-item {
     background: rgba(255, 255, 255, 0)!important ;
 }
+
+section {
+    padding: 0;
+    overflow: hidden;
+}
+
+.tower {
+    height: 900px;
+}
+
+.hello {
+    padding-bottom: 30px;
+}
+
+.container {
+    padding: 40px 40px;
+}
+
+#header .profile img {
+    margin: 15px auto;
+    display: block;
+    width: 145px;
+    border: 8px solid #2c2f3f;
+}
+
+.me {
+    border-radius: 10%;
+}
+
+.section-title {
+    padding-bottom: 0px;
+}

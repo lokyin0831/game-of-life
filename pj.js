@@ -5,7 +5,7 @@ let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
-let slider;
+// let slider;
 let isGameContinue = true
 let defaultNeighborsOfReproduction = 3
 let defaultNeighborsOfLifeless = 2
@@ -952,11 +952,11 @@ O..O.......OOOOOO.......O..O
 
 function setup() {
 
-    slider = createSlider(1, 50, 10);
-    slider.style('width', `300px`);
+    // slider = createSlider(1, 50, 2);
+    // slider.style('width', `300px`);
 
     /* Set the canvas to be under the element #canvas*/
-    const canvas = createCanvas(windowWidth , windowHeight - 220);
+    const canvas = createCanvas(windowWidth, windowHeight - 80);
     canvas.parent(document.querySelector('#canvas'));
 
     /*Calculate the number of columns and rows */
@@ -997,12 +997,9 @@ function init() {
 
 function draw() {
 
-    fr = slider.value()
-    frameRate(fr)
-    document.querySelector('.fps')
-        .innerHTML = (`fps: ${fr}`)
+    // FrameRate refresh
+    frameRate(parseInt(output.innerHTML))
 
-    // background(200);
 
     if (nightMode == false) {
         background("white")
@@ -1210,6 +1207,21 @@ document.querySelector('.glider')
         currentBoard[x - 2][y + 1] = 1;
     });
 
+const eventMakeAGlider = function () {
+    if (event.keyCode == 71) {
+        let x = Math.floor(Math.random() * 64) + 1;
+        let y = Math.floor(Math.random() * 34) + 1;
+        currentBoard[x][y] = 1;
+        currentBoard[x][y + 1] = 1;
+        currentBoard[x][y + 2] = 1;
+        currentBoard[x - 1][y + 2] = 1;
+        currentBoard[x - 2][y + 1] = 1;
+    }
+}
+addEventListener("keydown", eventMakeAGlider)
+
+
+
 // make a Gosper glider gun
 document.querySelector('.gosper-glider-gun')
     .addEventListener('click', function () {
@@ -1397,15 +1409,49 @@ document.querySelector('.random-pattern-generator')
             x = arrayOfString.replace(/O/g, "1").replaceAll(".", "0")
             new01Array.push(x)
         }
-        for (i = 15; i < new01Array.length + 15; i++) {
-            z = new01Array[i - 15]
-            for (ii = 10; ii < z.length + 10; ii++) {
-                if (z[ii - 10] == 1) {
+        for (i = 5; i < new01Array.length + 5; i++) {
+            z = new01Array[i - 5]
+            for (ii = 5; ii < z.length + 5; ii++) {
+                if (z[ii - 5] == 1) {
                     currentBoard[ii][i] = 1;
                 }
             }
         }
     })
+
+const eventRandomGenerator = function () {
+    if (event.keyCode == 82) {
+        //reset first
+        init();
+        defaultNeighborsOfReproduction = 3
+        document.querySelector('.reproductionNeighbors')
+            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+        defaultNeighborsOfLifeless = 2
+        document.querySelector('.showLonelinessSentence')
+            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+
+        //generate a pattern
+        let chooseOnePattern = pattern[Math.floor(Math.random() * pattern.length)]
+        let arrayOfStrings = chooseOnePattern.split('\n').filter(e => e !== '')
+        let new01Array = []
+        for (arrayOfString of arrayOfStrings) {
+            x = arrayOfString.replace(/O/g, "1").replaceAll(".", "0")
+            new01Array.push(x)
+        }
+        for (i = 5; i < new01Array.length + 5; i++) {
+            z = new01Array[i - 5]
+            for (ii = 5; ii < z.length + 5; ii++) {
+                if (z[ii - 5] == 1) {
+                    currentBoard[ii][i] = 1;
+                }
+            }
+        }
+    }
+}
+
+addEventListener('keydown', eventRandomGenerator)
+
+
 
 
 // change rules for reproductionNeighbors
@@ -1478,25 +1524,25 @@ function resizeSetup() {
 let q = 0
 let w = 0
 const keyboardModeListenerFunction = function () {
-    if (event.keyCode == 38) {
+    if (event.keyCode == 87) {
         w--
         if (currentBoard[q][w + 1] != 1)
             currentBoard[q][w + 1] = 0
         currentBoard[q][w] = 2
 
-    } else if (event.keyCode == 40) {
+    } else if (event.keyCode == 83) {
         w++
         if (currentBoard[q][w - 1] != 1)
             currentBoard[q][w - 1] = 0
         currentBoard[q][w] = 2
 
-    } else if (event.keyCode == 37) {
+    } else if (event.keyCode == 65) {
         q--
         if (currentBoard[q + 1][w] != 1)
             currentBoard[q + 1][w] = 0
         currentBoard[q][w] = 2
 
-    } else if (event.keyCode == 39) {
+    } else if (event.keyCode == 68) {
         q++
         if (currentBoard[q - 1][w] != 1)
             currentBoard[q - 1][w] = 0
@@ -1504,7 +1550,7 @@ const keyboardModeListenerFunction = function () {
     }
 }
 const pressEntertoMakeBlack = function () {
-    if (event.keyCode == 192) {
+    if (event.keyCode == 220) {
         if (currentBoard[q][w] = 2) {
             currentBoard[q][w] = 1
             console.log(currentBoard[q][w])
@@ -1561,6 +1607,7 @@ document.querySelector('.zoomBig')
         zoomBigOrSmallSetup()
     });
 
+
 document.querySelector('.zoomSmall')
     .addEventListener('click', function () {
         if (unitLength > 18) {
@@ -1568,6 +1615,21 @@ document.querySelector('.zoomSmall')
         }
         zoomBigOrSmallSetup()
     });
+
+
+const zoomInOrOut = function () {
+    if (event.keyCode == 187) {
+        unitLength = unitLength + 10
+        zoomBigOrSmallSetup()
+    } else if (event.keyCode == 189) {
+        if (unitLength > 18) {
+            unitLength = unitLength - 10
+        }
+        zoomBigOrSmallSetup()
+    }
+}
+addEventListener('keydown', zoomInOrOut)
+
 
 function zoomBigOrSmallSetup() {
     /* Set the canvas to be under the element #canvas*/
@@ -1584,4 +1646,14 @@ function zoomBigOrSmallSetup() {
             currentBoard[i][j] = nextBoard[i][j];
         }
     }
+}
+
+// new frameRate
+
+let slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function () {
+    output.innerHTML = this.value;
 }

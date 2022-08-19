@@ -1,3 +1,165 @@
 body {
-    padding: 30px;
+    padding: 0px;
 }
+
+.form-switch {
+    padding-left: 3em;
+}
+
+.form-check {
+    min-height: 2rem;
+}
+
+.playAndStop {
+    padding-right: 4px;
+}
+
+.paddingForDropdown {
+    padding: 0 0 0 16px;
+}
+
+.play {
+    width: 67px;
+}
+
+.stop {
+    width: 67px;
+}
+
+.demo-wrap {
+    position: relative;
+}
+
+.demo-bg {
+    opacity: 0.1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 54px;
+}
+
+.demo-content {
+    position: relative;
+}
+
+.dropdown-item-special {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 12px;
+}
+
+.dropdown-item-special:hover {
+    cursor:default;
+    color: black;
+}
+
+.dropdown-item-special-special {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 18px;
+}
+
+.dropdown-item-special-special:hover {
+    cursor:default;
+    color: black;
+}
+
+.container-display-flex {
+    display: flex;
+}
+
+.container-display-flex {
+    width: 75px;
+}
+
+.button-padding {
+    padding-left: 10px;
+}
+
+.button-padding {
+    padding-left: 10px;
+}
+
+.slider-size {
+    width: 300px;
+}
+
+/* slider */
+.slidecontainer {
+    width: 300px;
+    display: flex;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 400px;
+    height: 25px;
+    /* border-radius: 100%; */
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #000000;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+  }
+
+  #myRange {
+    width: 200px;
+  }
+
+  .zoomBig {
+    height: 38px;
+  }
+
+  .space-after-fps {
+    margin-right: 8px;
+    margin-right: 8px;
+  }
+
+  .space-after-fps-value {
+    border-right: 15px;
+    width: 40px;
+  }
+
+  .container-height {
+    height:35px;
+  }
