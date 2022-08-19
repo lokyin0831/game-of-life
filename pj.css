@@ -113,12 +113,12 @@ body {
     -webkit-appearance: none;
     width: 400px;
     height: 25px;
-    /* border-radius: 100%; */
-    background: #d3d3d3;
+    background: #a29f9f;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    border-radius: 25px
   }
   
   .slider:hover {
@@ -152,14 +152,28 @@ body {
 
   .space-after-fps {
     margin-right: 8px;
-    margin-right: 8px;
+    font-size: 15px;
+    margin-top: 5px;
   }
 
   .space-after-fps-value {
     border-right: 15px;
     width: 40px;
+    font-size: 15px;
+    margin-top: 5px;
   }
 
   .container-height {
     height:35px;
+  }
+
+  .test {
+    padding-top: 6px;
+    padding-left: 30px;
+    position: fixed;
+    right:12px;
+  }
+
+  .navbar {
+    padding-bottom: 8;
   }

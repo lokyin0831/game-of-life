@@ -1124,10 +1124,10 @@ document.querySelector('.reset-game')
         init();
         defaultNeighborsOfReproduction = 3
         document.querySelector('.reproductionNeighbors')
-            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+            .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
         defaultNeighborsOfLifeless = 2
         document.querySelector('.showLonelinessSentence')
-            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+            .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
     });
 
 // stop or play switch
@@ -1396,10 +1396,10 @@ document.querySelector('.random-pattern-generator')
         init();
         defaultNeighborsOfReproduction = 3
         document.querySelector('.reproductionNeighbors')
-            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+            .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
         defaultNeighborsOfLifeless = 2
         document.querySelector('.showLonelinessSentence')
-            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+            .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
 
         //generate a pattern
         let chooseOnePattern = pattern[Math.floor(Math.random() * pattern.length)]
@@ -1425,10 +1425,10 @@ const eventRandomGenerator = function () {
         init();
         defaultNeighborsOfReproduction = 3
         document.querySelector('.reproductionNeighbors')
-            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+            .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
         defaultNeighborsOfLifeless = 2
         document.querySelector('.showLonelinessSentence')
-            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+            .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
 
         //generate a pattern
         let chooseOnePattern = pattern[Math.floor(Math.random() * pattern.length)]
@@ -1456,13 +1456,13 @@ addEventListener('keydown', eventRandomGenerator)
 
 // change rules for reproductionNeighbors
 document.querySelector('.reproductionNeighbors')
-    .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+    .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
 
 document.querySelector('.addReproductionNeighbors')
     .addEventListener('click', function () {
         defaultNeighborsOfReproduction = defaultNeighborsOfReproduction + 1
         document.querySelector('.reproductionNeighbors')
-            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+            .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
     });
 
 document.querySelector('.removeReproductionNeighbors')
@@ -1472,19 +1472,21 @@ document.querySelector('.removeReproductionNeighbors')
             defaultNeighborsOfReproduction = 0
         }
         document.querySelector('.reproductionNeighbors')
-            .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+            .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
     });
 /////
 
 // change rules for lifeless
 document.querySelector('.showLonelinessSentence')
-    .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+    .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.
+    `)
 
 document.querySelector('.addLonelinessNeighbors')
     .addEventListener('click', function () {
         defaultNeighborsOfLifeless = defaultNeighborsOfLifeless + 1
         document.querySelector('.showLonelinessSentence')
-            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+            .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.
+            `)
     });
 
 document.querySelector('.removeLonelinessNeighbors')
@@ -1494,7 +1496,7 @@ document.querySelector('.removeLonelinessNeighbors')
             defaultNeighborsOfLifeless = 0
         }
         document.querySelector('.showLonelinessSentence')
-            .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+            .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
     });
 
 //Window resize
@@ -1505,7 +1507,7 @@ function windowResized() {
 
 function resizeSetup() {
     /* Set the canvas to be under the element #canvas*/
-    const canvas = createCanvas(windowWidth, windowHeight - 220);
+    const canvas = createCanvas(windowWidth, windowHeight - 80);
     canvas.parent(document.querySelector('#canvas'));
 
     /*Calculate the number of columns and rows */
@@ -1569,10 +1571,10 @@ document.querySelector('.draw-with-keyboard')
             init();
             defaultNeighborsOfReproduction = 3
             document.querySelector('.reproductionNeighbors')
-                .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+                .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
             defaultNeighborsOfLifeless = 2
             document.querySelector('.showLonelinessSentence')
-                .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+                .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
 
 
 
@@ -1593,10 +1595,10 @@ document.querySelector('.draw-with-keyboard')
             init();
             defaultNeighborsOfReproduction = 3
             document.querySelector('.reproductionNeighbors')
-                .innerHTML = (`If a box has no life and it has ${defaultNeighborsOfReproduction} neighbors, the box in next generation fills with life because of reproduction.`)
+                .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
             defaultNeighborsOfLifeless = 2
             document.querySelector('.showLonelinessSentence')
-                .innerHTML = (`If a box has life and it has less than ${defaultNeighborsOfLifeless} neighbors. It dies of loneliness. The box becomes lifeless next generation.`)
+                .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
         }
     });
 
@@ -1633,7 +1635,7 @@ addEventListener('keydown', zoomInOrOut)
 
 function zoomBigOrSmallSetup() {
     /* Set the canvas to be under the element #canvas*/
-    const canvas = createCanvas(windowWidth, windowHeight - 220);
+    const canvas = createCanvas(windowWidth, windowHeight - 80);
     canvas.parent(document.querySelector('#canvas'));
 
     /*Calculate the number of columns and rows */
