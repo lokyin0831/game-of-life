@@ -1,11 +1,10 @@
-let unitLength = 18;
+let unitLength = 12;
 const boxColor = 125;
 const strokeColor = 50;
-let columns; /* To be determined by window width */
-let rows;    /* To be determined by window height */
+let columns;
+let rows;
 let currentBoard;
 let nextBoard;
-// let slider;
 let isGameContinue = true
 let defaultNeighborsOfReproduction = 3
 let defaultNeighborsOfLifeless = 2
@@ -14,6 +13,8 @@ let noColor = true
 let isRandomInitialState = false
 let isKeyBoardMode = false
 let nightMode = false
+
+// pattern library
 const pattern = [`....OO
 ...O..O
 ...OOOO
@@ -952,9 +953,6 @@ O..O.......OOOOOO.......O..O
 
 function setup() {
 
-    // slider = createSlider(1, 50, 2);
-    // slider.style('width', `300px`);
-
     /* Set the canvas to be under the element #canvas*/
     const canvas = createCanvas(windowWidth, windowHeight - 80);
     canvas.parent(document.querySelector('#canvas'));
@@ -1000,13 +998,12 @@ function draw() {
     // FrameRate refresh
     frameRate(parseInt(output.innerHTML))
 
-
+    // background color
     if (nightMode == false) {
         background("white")
     } else {
         background("black")
     }
-
 
     generate();
     for (let i = 0; i < columns; i++) {
@@ -1118,6 +1115,7 @@ function mouseReleased() {
     loop();
 }
 
+// reset button
 document.querySelector('.reset-game')
     .addEventListener('click', function () {
         isKeyBoardMode = false;
@@ -1143,7 +1141,7 @@ document.querySelector('.play')
         isGameContinue = true
     });
 
-// random color
+// random color switch
 document.querySelector('.color')
     .addEventListener('click', function () {
         if (noColor) {
@@ -1153,7 +1151,7 @@ document.querySelector('.color')
         }
     });
 
-// Night Mode
+// Night Mode swtich
 document.querySelector('.night-mode')
     .addEventListener('click', function () {
         if (nightMode == false) {
@@ -1221,7 +1219,6 @@ const eventMakeAGlider = function () {
 addEventListener("keydown", eventMakeAGlider)
 
 
-
 // make a Gosper glider gun
 document.querySelector('.gosper-glider-gun')
     .addEventListener('click', function () {
@@ -1264,6 +1261,7 @@ document.querySelector('.gosper-glider-gun')
         currentBoard[36][4] = 1;
 
     });
+
 
 // make a Lightweight spaceship
 document.querySelector('.lightweight-spaceship')
@@ -1388,11 +1386,12 @@ document.querySelector('.lightweight-spaceship')
         currentBoard[24][13 + y] = 1;
     });
 
+
 // random pattern generator
 document.querySelector('.random-pattern-generator')
     .addEventListener('click', function () {
 
-        //reset first
+        //reset the board first
         init();
         defaultNeighborsOfReproduction = 3
         document.querySelector('.reproductionNeighbors')
@@ -1421,7 +1420,7 @@ document.querySelector('.random-pattern-generator')
 
 const eventRandomGenerator = function () {
     if (event.keyCode == 82) {
-        //reset first
+        //reset the board first
         init();
         defaultNeighborsOfReproduction = 3
         document.querySelector('.reproductionNeighbors')
@@ -1448,10 +1447,7 @@ const eventRandomGenerator = function () {
         }
     }
 }
-
 addEventListener('keydown', eventRandomGenerator)
-
-
 
 
 // change rules for reproductionNeighbors
@@ -1474,7 +1470,7 @@ document.querySelector('.removeReproductionNeighbors')
         document.querySelector('.reproductionNeighbors')
             .innerHTML = (`Reproduction rule: No life but have ${defaultNeighborsOfReproduction} neighbors.`)
     });
-/////
+
 
 // change rules for lifeless
 document.querySelector('.showLonelinessSentence')
@@ -1499,7 +1495,7 @@ document.querySelector('.removeLonelinessNeighbors')
             .innerHTML = (`Dead rule: Has life but less than ${defaultNeighborsOfLifeless} neighbors.`)
     });
 
-//Window resize
+// Window resize
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     resizeSetup();
@@ -1602,7 +1598,7 @@ document.querySelector('.draw-with-keyboard')
         }
     });
 
-// zoom box to big and small
+// zoom boxes to biger and smaller
 document.querySelector('.zoomBig')
     .addEventListener('click', function () {
         unitLength = unitLength + 10
@@ -1650,7 +1646,7 @@ function zoomBigOrSmallSetup() {
     }
 }
 
-// new frameRate
+// adjust frameRate
 
 let slider = document.getElementById("myRange");
 var output = document.getElementById("demo");

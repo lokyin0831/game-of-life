@@ -8,7 +8,8 @@ section {
 }
 
 .tower {
-    height: 900px;
+    height: 100%;
+    width: 100%;
 }
 
 .hello {
@@ -32,4 +33,13 @@ section {
 
 .section-title {
     padding-bottom: 0px;
+}
+
+div.icon {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.photo-height {
+    height: 365px;
 }
